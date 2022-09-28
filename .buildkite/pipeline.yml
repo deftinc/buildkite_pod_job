@@ -1,4 +1,4 @@
-pod-spec:
+fortune-spec:
   containers:
     - name: agent
       image: embarkstudios/fortune
@@ -13,4 +13,5 @@ pod-spec:
 
 steps:
   - plugins:
-      - k8s-job#v1.0.0: *pod-spec
+    - buildkite/k8s-job#phw-scaffold:
+        pod-spec: *fortune-spec
