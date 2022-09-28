@@ -14,5 +14,5 @@ fortune-spec: &fortune-spec
 steps:
   - label: "Consulting my :crystal_ball: thats inside my :k8s: pod"
     plugins:
-      - buildkite/k8s-job#phw-scaffold:
+      - k8s-job#phw-scaffold:
           pod-spec: *fortune-spec
