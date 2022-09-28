@@ -1,0 +1,16 @@
+pod-spec:
+  containers:
+    - name: agent
+      image: embarkstudios/fortune
+      command: ["startrek"]
+      resources:
+        requests:
+          cpu: "0.25"
+          memory: "500Mi"
+        limits:
+          cpu: "0.25"
+          memory: "500Mi"
+
+steps:
+  - plugins:
+      - k8s-job#v1.0.0: *pod-spec
