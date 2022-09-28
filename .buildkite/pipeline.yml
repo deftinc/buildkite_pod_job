@@ -12,6 +12,7 @@ fortune-spec: &fortune-spec
           memory: "500Mi"
 
 steps:
-  - plugins:
+  - label: "Consulting my :crystal_ball: thats inside my :k8s: pod"
+    plugins:
       - buildkite/k8s-job#phw-scaffold:
           pod-spec: *fortune-spec
