@@ -20,7 +20,7 @@ steps:
           pod-spec:
             restartPolicy: OnFailure
             containers:
-              - name: agent
+              - name: ${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_BUILD_NUMBER}-${BUILDKITE_STEP_ID}-fortune
                 image: embarkstudios/fortune
                 command: ["startrek"]
                 resources:
