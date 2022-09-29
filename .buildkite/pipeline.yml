@@ -18,6 +18,7 @@ steps:
     plugins:
       - k8s-job#phw-scaffold:
           pod-spec:
+            restartPolicy: OnFailure
             containers:
               - name: agent
                 image: embarkstudios/fortune
