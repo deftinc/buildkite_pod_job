@@ -1,15 +1,17 @@
-# fortune-spec: &fortune-spec
-#   containers:
-#     - name: agent
-#       image: embarkstudios/fortune
-#       command: ["startrek"]
-#       resources:
-#         requests:
-#           cpu: "0.25"
-#           memory: "500Mi"
-#         limits:
-#           cpu: "0.25"
-#           memory: "500Mi"
+fortune-spec: &fortune-spec
+  restartPolicy: OnFailure
+  containers:
+    - name: ${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_BUILD_NUMBER}-${BUILDKITE_STEP_ID}-fortune
+      image: embarkstudios/fortune
+      command: ["/usr/bin/fortune"]
+      args: ["startrek"]
+      resources:
+        requests:
+          cpu: "0.25"
+          memory: "500Mi"
+        limits:
+          cpu: "0.25"
+          memory: "500Mi"
 
 steps:
   - label: "Consulting my :crystal_ball: thats inside my :k8s: pod"
@@ -17,17 +19,4 @@ steps:
       BUILDKITE_PLUGINS_ALWAYS_CLONE_FRESH: "true"
     plugins:
       - k8s-job#phw-scaffold:
-          pod-spec:
-            restartPolicy: OnFailure
-            containers:
-              - name: ${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_BUILD_NUMBER}-${BUILDKITE_STEP_ID}-fortune
-                image: embarkstudios/fortune
-                command: ["/usr/bin/fortune"]
-                args: ["startrek"]
-                resources:
-                  requests:
-                    cpu: "0.25"
-                    memory: "500Mi"
-                  limits:
-                    cpu: "0.25"
-                    memory: "500Mi"
+          pod-spec: *fortune-spec
