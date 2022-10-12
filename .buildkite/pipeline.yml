@@ -48,3 +48,4 @@ steps:
       - k8s-job#phw-add-code-mount:
           pod-spec: *source-spec
           mount-source: true
+          cleanup: false
